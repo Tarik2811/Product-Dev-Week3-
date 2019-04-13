@@ -1,0 +1,35 @@
+---
+title: "Product-Dev-Week3-"
+author: "Tarik2811"
+date: "13/04/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+##Load population data of Mariages and divorces in NZ and plot it 
+## Source info: https://www.stats.govt.nz/large-datasets/csv-files-for-download/
+##marriages-civil-unions-and-divorces-december-2017-zipped-csv-tables.zip 
+
+
+```
+
+
+
+```{r ploty}
+library(plotly)
+library(tidyverse)
+datafile<- "C:\\Users\\bouras\\Desktop\\Product-developmentAss2\\MCUD-dec17-marriages-and-divorces.csv"
+
+NZmar <- read.csv(datafile)
+NZmarF<- NZmar %>% spread(Marriages_or_Divorces,Count)
+
+p <- plot_ly(NZmarF, x = ~Period, y = ~Marriages, type = 'bar', name = 'Marriages') %>% add_trace(y = ~Divorces, name = 'Divorces') %>%
+  layout(title = 'Marriages and Divorces in New Zealand',yaxis = list(title = 'Counts'), barmode = 'group')
+##'layout(title = 'Primates Brain and Body Weight'
+p
+
+
+
+```
